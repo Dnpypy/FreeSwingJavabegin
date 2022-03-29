@@ -1,13 +1,18 @@
 import javax.swing.*;
+import java.awt.*;
 
 public class TestGui {
     public static void main(String[] args) {
-        JFrame jFrame = new JFrame("Test Frame");
-        jFrame.setSize(400, 400);
-        jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        jFrame.setVisible(true);
 
-        JButton jButton = new JButton("Test Button");
-        jFrame.add(jButton);
+        JFrame frame = new JFrame("Test Frame");
+        frame.setSize(900, 900);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setVisible(true);
+
+        FlowLayout f1 = new FlowLayout();
+        frame.setLayout(f1);
+
+        JButton button = new JButton("Test Button");
+        frame.add(button);
     }
 }
