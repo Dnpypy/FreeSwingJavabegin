@@ -15,5 +15,6 @@ public class JFrameHome extends JFrame {
     public JFrameHome(String name, int width, int height, Component comp) {
         this(name, width, height);
         super.getContentPane().add(comp);
+
     }
 }
