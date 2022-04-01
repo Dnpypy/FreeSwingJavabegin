@@ -16,6 +16,12 @@ public class JPanelHome extends JPanel {
         super.add(comp);
     }
 
+    public JPanelHome(String name, int width, int height, Component comp1, Component comp2) {
+        this(name, width, height);
+        super.add(comp1);
+        super.add(comp2);
+    }
+
     public JPanelHome(String name, int width, int height, LayoutManager layoutManager) {
         this(name, width, height);
         super.setLayout(layoutManager);
