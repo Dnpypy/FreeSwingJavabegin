@@ -7,25 +7,24 @@ import java.awt.*;
 
 public class TestGui {
 
-    private JButtonHome btnAdd;
-    private JButtonHome btnSubtract;
-    private JButtonHome btnDivide;
-    private JButtonHome btnMultiply;
+    private MyButton btnAdd;
+    private MyButton btnSubtract;
+    private MyButton btnDivide;
+    private MyButton btnMultiply;
 
     private JLabel labelNumber1;
     private JLabel labelNumber2;
     private JLabel labelResult;
 
-    private JTextFieldHome jtxtNumber1;
-    private JTextFieldHome jtxtNumber2;
-    private JTextFieldHome jtxtResult;
+    private MyTextField jtxtNumber1;
+    private MyTextField jtxtNumber2;
+    private MyTextField jtxtResult;
 
-    private JPanelHome panel1;
-    private JPanelHome panel2;
-    private JPanelHome panel3;
+    private MyPanel panel1;
+    private MyPanel panel2;
+    private MyPanel panel3;
 
-    //private JFrameHome frame;
-    private JDialogHome frame;
+    private MyFrame frame;
 
     public static void main(String[] args) throws UnsupportedLookAndFeelException {
 
@@ -40,42 +39,29 @@ public class TestGui {
         testGui.createButtons();
         testGui.createPanels();
         testGui.createFrame();
-
     }
 
-    private void createLabels() {
-        labelNumber1 = new JLabel("Число1");
-        labelNumber2 = new JLabel("Число2");
-        labelResult = new JLabel("Результат");
-    }
+    private void createFrame() {
+        frame = new MyFrame("Калькулятор", 430, 200, new BorderLayout(2, 2));
+        frame.setMinimumSize(new Dimension(430, 200));
 
-    private void createTextFields() {
-        jtxtNumber1 = new JTextFieldHome(10);
-        jtxtNumber2 = new JTextFieldHome(10);
+        frame.getContentPane().add(panel1, BorderLayout.NORTH);
+        frame.getContentPane().add(panel2, BorderLayout.CENTER);
+        frame.getContentPane().add(panel3, BorderLayout.SOUTH);
 
-        jtxtResult = new JTextFieldHome(15, Color.RED);
-        jtxtResult.setEditable(false);
-        jtxtResult.setFocusable(false);
-
-    }
-
-    private void createButtons() {
-        btnAdd = new JButtonHome("Сложение");
-        btnSubtract = new JButtonHome("Вычитание");
-        btnDivide = new JButtonHome("Деление");
-        btnMultiply = new JButtonHome("Умножение");
+        frame.setVisible(true);
     }
 
     private void createPanels() {
-        panel1 = new JPanelHome("panel1", 100,100 );
+        panel1 = new MyPanel("panel1", 100,100 );
         panel1.setPreferredSize(new Dimension(200, 50));
         panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        panel2 = new JPanelHome("panel2", 100,100 );
+        panel2 = new MyPanel("panel2", 100,100 );
         panel2.setPreferredSize(new Dimension(200, 50));
         panel2.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        panel3 = new JPanelHome("panel3", 100,100 );
+        panel3 = new MyPanel("panel3", 100,100 );
         panel3.setPreferredSize(new Dimension(200, 50));
         panel3.setLayout(new FlowLayout(FlowLayout.LEFT));
 
@@ -86,22 +72,33 @@ public class TestGui {
 
         panel2.add(btnAdd);
         panel2.add(btnSubtract);
-        panel2.add(btnDivide);
         panel2.add(btnMultiply);
+        panel2.add(btnDivide);
 
         panel3.add(labelResult);
         panel3.add(jtxtResult);
     }
 
-    private void createFrame() {
-        frame = new JDialogHome("Калькулятор", 430, 200, new BorderLayout(2, 2));
-        frame.setMinimumSize(new Dimension(430, 200));
+    private void createButtons() {
+        btnAdd = new MyButton("Сложение");
+        btnSubtract = new MyButton("Вычитание");
+        btnDivide = new MyButton("Деление");
+        btnMultiply = new MyButton("Умножение");
+    }
 
-        frame.getContentPane().add(panel1, BorderLayout.NORTH);
-        frame.getContentPane().add(panel2, BorderLayout.CENTER);
-        frame.getContentPane().add(panel3, BorderLayout.SOUTH);
+    private void createTextFields() {
+        jtxtNumber1 = new MyTextField(10);
+        jtxtNumber2 = new MyTextField(10);
 
-        frame.setVisible(true);
+        jtxtResult = new MyTextField(15, Color.RED);
+        jtxtResult.setEditable(false);
+        jtxtResult.setFocusable(false);
+    }
+
+    private void createLabels() {
+        labelNumber1 = new JLabel("Число1");
+        labelNumber2 = new JLabel("Число2");
+        labelResult = new JLabel("Результат");
     }
 
 
