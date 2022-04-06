@@ -4,13 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
-import java.awt.event.MouseListener;
 
-public class ButtonListener extends MouseAdapter implements ActionListener {
+public class CalcButtonActionListener extends MouseAdapter implements ActionListener {
 
     private JPanel panel;
 
-    public ButtonListener(JPanel panel) {
+    public CalcButtonActionListener(JPanel panel) {
         this.panel = panel;
     }
 
