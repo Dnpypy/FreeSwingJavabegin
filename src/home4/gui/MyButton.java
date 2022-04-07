@@ -5,11 +5,11 @@ import javax.swing.*;
 public class MyButton extends JButton {
 
     public MyButton(String name) {
-        super(name);
+        super.setText(name);
     }
 
-    public MyButton(String name, int width, int height) {
-        this(name);
+    public MyButton(String title, int width, int height) {
+        this(title);
         super.setSize(width, height);
     }
 }

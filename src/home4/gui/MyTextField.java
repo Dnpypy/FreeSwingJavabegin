@@ -5,22 +5,22 @@ import java.awt.*;
 
 public class MyTextField extends JTextField {
 
-    public MyTextField(String name, int width) {
-        this(width);
-        super.setName(name);
+    public MyTextField(String name, int columns) {
+        this(columns);
+        super.setText(name);
     }
 
-    public MyTextField(int width) {
-        super.setColumns(width);
+    public MyTextField(int columns) {
+        super.setColumns(columns);
         Font font = new Font("Courier", Font.ITALIC, 12);
         super.setFont(font);
         super.setForeground(Color.GRAY);
     }
 
-    public MyTextField(int width, Color color) {
-        super.setColumns(width);
+    public MyTextField(int columns, Color textColor) {
+        super.setColumns(columns);
         Font font = new Font("Courier", Font.ITALIC, 12);
         super.setFont(font);
-        super.setForeground(color);
+        super.setForeground(textColor);
     }
 }

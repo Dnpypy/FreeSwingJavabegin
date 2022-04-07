@@ -1,11 +1,19 @@
-package home4.gui;
+package layoutsdemo;
 
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
+import home4.gui.MyButton;
+import home4.gui.MyFrame;
+import home4.gui.MyPanel;
+import home4.gui.MyTextField;
+import home4.listeners.CalcButtonActionListener;
+import home4.listeners.CalcTextFieldFocusListener;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class TestGui {
+
+    public static final String INPUT_CHISLO = "введите число";
 
     private MyButton btnAdd;
     private MyButton btnSubtract;
@@ -47,6 +55,8 @@ public class TestGui {
         frame = new MyFrame("Калькулятор", 430, 200, new BorderLayout(2, 2));
         frame.setMinimumSize(new Dimension(430, 200));
 
+        frame.setResizable(false);
+
         frame.getContentPane().add(panel1,BorderLayout.NORTH);
         frame.getContentPane().add(panel2,BorderLayout.CENTER);
         frame.getContentPane().add(panel3,BorderLayout.SOUTH);
@@ -82,8 +92,8 @@ public class TestGui {
     }
 
     private void createTextField() {
-        jtxtNumber1 = new MyTextField(10);
-        jtxtNumber2 = new MyTextField(10);
+        jtxtNumber1 = new MyTextField(INPUT_CHISLO, 10);
+        jtxtNumber2 = new MyTextField(INPUT_CHISLO,10);
 
         jtxtResult = new MyTextField(15, Color.red);
         jtxtResult.setEditable(false);
@@ -108,12 +118,25 @@ public class TestGui {
         addButtonListener();
     }
 
-    //...
+    /**
+     * При создании слушателя события при нажатии кнопки создаем объект класса CalcButtonActionListener
+     */
     private void addButtonListener(){
+        CalcButtonActionListener bl = new CalcButtonActionListener(jtxtNumber1, jtxtNumber2, jtxtResult);
+
+        btnAdd.addActionListener(bl);
+        btnSubtract.addActionListener(bl);
+        btnDivide.addActionListener(bl);
+        btnMultiply.addActionListener(bl);
 
     }
 
+    /**
+     * Для каждого текстового поля создаем отдельный экземпляр класса CalcTextFieldFocusListener
+     * и в него передаем текущее текстовое поле с которым мы работаем
+     */
     private void addTextFieldListener(){
-
+        jtxtNumber1.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber1));
+        jtxtNumber2.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber2));
     }
 }
