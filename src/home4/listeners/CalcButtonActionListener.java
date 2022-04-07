@@ -1,11 +1,10 @@
-package listeners;
+package home4.listeners;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
 
-public class CalcButtonActionListener extends MouseAdapter implements ActionListener {
+public class CalcButtonActionListener implements ActionListener {
 
     private JPanel panel;
 
