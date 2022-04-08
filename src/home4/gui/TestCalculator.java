@@ -3,8 +3,10 @@ package home4.gui;
 import com.jtattoo.plaf.smart.SmartLookAndFeel;
 import home4.listeners.CalcButtonActionListener;
 import home4.listeners.CalcTextFieldFocusListener;
+import home4.listeners.ChangeSkinActionListener;
 
 import javax.swing.*;
+import javax.swing.plaf.nimbus.NimbusLookAndFeel;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -38,7 +40,7 @@ public class TestCalculator {
     public static void main(String[] args) {
 
         try {
-            UIManager.setLookAndFeel(new SmartLookAndFeel());
+            UIManager.setLookAndFeel(new NimbusLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(TestCalculator.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -73,6 +75,8 @@ public class TestCalculator {
         frame.getContentPane().add(panel2, BorderLayout.CENTER);
         frame.getContentPane().add(panel3, BorderLayout.SOUTH);
 
+        createSkinListeners();
+
         frame.setVisible(true);
     }
 
@@ -101,6 +105,7 @@ public class TestCalculator {
 
         panel3.add(labelResult);
         panel3.add(jtxtResult);
+        panel3.add(btnChangeSkin);
     }
 
     private void createTextFields() {
@@ -125,6 +130,7 @@ public class TestCalculator {
         btnSubtract = new MyButton("Вычитание");
         btnDivide = new MyButton("Деление");
         btnMultiply = new MyButton("Умножение");
+        btnChangeSkin = new MyButton("Сменить скин");
 
         addButtonListeners();
     }
@@ -141,5 +147,9 @@ public class TestCalculator {
     private void addTextFieldsListeners() {
         jtxtNumber1.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber1));
         jtxtNumber2.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber2));
+    }
+
+    private void createSkinListeners() {
+        btnChangeSkin.addActionListener(new ChangeSkinActionListener(frame, new SmartLookAndFeel()));
     }
 }
