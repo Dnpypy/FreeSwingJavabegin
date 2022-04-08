@@ -5,6 +5,8 @@ import home4.listeners.CalcButtonActionListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 
 public class AbsoluteLayoutDemo extends LayoutDefaultButtons {
@@ -30,7 +32,12 @@ public class AbsoluteLayoutDemo extends LayoutDefaultButtons {
         // при нажатии на кнопку 1 отбработается ActionListener()
         // что будет происходить по нажатию этой кнопки
         //
-        //button1.addActionListener(new CalcButtonActionListener(panel));
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                JOptionPane.showConfirmDialog(panel, " Какойто текст");
+            }
+        });
 
 
         JButton button2 = new JButton("Button2");
