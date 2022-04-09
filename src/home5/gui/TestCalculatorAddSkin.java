@@ -1,15 +1,17 @@
-package home4.gui;
+package home5.gui;
 
-import home4.listeners.CalcButtonActionListener;
-import home4.listeners.CalcTextFieldFocusListener;
+import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import home5.listeners.CalcButtonActionListener;
+import home5.listeners.CalcTextFieldFocusListener;
+import home5.listeners.ChangeSkinActionListener;
 
 import javax.swing.*;
-import javax.swing.plaf.nimbus.NimbusLookAndFeel;
+import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestCalculator {
+public class TestCalculatorAddSkin {
 
     public final static String INPUT_NUMBER = "Введите число";
 
@@ -17,7 +19,9 @@ public class TestCalculator {
     private MyButton btnSubtract;
     private MyButton btnDivide;
     private MyButton btnMultiply;
-    //...
+
+    private MyButton btnChangeSkin;
+    private MyButton btnDefaultSkin;
 
     private JLabel labelNumber1;
     private JLabel labelNumber2;
@@ -30,28 +34,21 @@ public class TestCalculator {
     private MyPanel panel1;
     private MyPanel panel2;
     private MyPanel panel3;
+    //private MyPanel panel4;
 
     private MyFrame frame;
 
     public static void main(String[] args) {
 
         try {
-            UIManager.setLookAndFeel(new NimbusLookAndFeel());
+            UIManager.setLookAndFeel(new AeroLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(TestCalculator.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TestCalculatorAddSkin.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         JFrame.setDefaultLookAndFeelDecorated(true);
 
-        TestCalculator calculator = new TestCalculator();
-
-        // тут внимательно
-        // так было
-//        calculator.createButtons();
-//        calculator.createLabels();
-//        calculator.createTextFields();
-//        calculator.createPanels();
-//        calculator.createFrame();
+        TestCalculatorAddSkin calculator = new TestCalculatorAddSkin();
 
         calculator.createLabels();
         calculator.createTextFields();
@@ -71,12 +68,14 @@ public class TestCalculator {
         frame.getContentPane().add(panel2, BorderLayout.CENTER);
         frame.getContentPane().add(panel3, BorderLayout.SOUTH);
 
-        //..
+        addChangeSkinListeners();
 
         frame.setVisible(true);
     }
 
+
     private void createPanels() {
+
         panel1 = new MyPanel("panel1", 100,100 );
         panel1.setPreferredSize(new Dimension(200, 50));
         panel1.setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -89,19 +88,26 @@ public class TestCalculator {
         panel3.setPreferredSize(new Dimension(200, 50));
         panel3.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        panel1.add(labelNumber1);
-        panel1.add(jtxtNumber1);
-        panel1.add(labelNumber2);
-        panel1.add(jtxtNumber2);
+//        panel4 = new MyPanel("panel4", 100,100 );
+//        panel4.setPreferredSize(new Dimension(200, 50));
+//        panel4.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        panel2.add(btnAdd);
-        panel2.add(btnSubtract);
-        panel2.add(btnMultiply);
-        panel2.add(btnDivide);
+        panel1.add(labelResult);
+        panel1.add(jtxtResult);
+        panel1.add(btnChangeSkin);
+        panel1.add(btnDefaultSkin);
 
-        panel3.add(labelResult);
-        panel3.add(jtxtResult);
-        //..
+
+        panel2.add(labelNumber1);
+        panel2.add(jtxtNumber1);
+        panel2.add(labelNumber2);
+        panel2.add(jtxtNumber2);
+
+        panel3.add(btnAdd);
+        panel3.add(btnSubtract);
+        panel3.add(btnMultiply);
+        panel3.add(btnDivide);
+
     }
 
     private void createTextFields() {
@@ -126,7 +132,9 @@ public class TestCalculator {
         btnSubtract = new MyButton("Вычитание");
         btnDivide = new MyButton("Деление");
         btnMultiply = new MyButton("Умножение");
-        //..
+
+        btnChangeSkin = new MyButton("Скин 1");
+        btnDefaultSkin = new MyButton("Скин 2");
 
         addButtonListeners();
     }
@@ -145,5 +153,9 @@ public class TestCalculator {
         jtxtNumber2.addFocusListener(new CalcTextFieldFocusListener(jtxtNumber2));
     }
 
-    //.
+    private void addChangeSkinListeners(){
+       btnChangeSkin.addActionListener(new ChangeSkinActionListener(frame, new MetalLookAndFeel()));
+       btnDefaultSkin.addActionListener(new ChangeSkinActionListener(frame, new AeroLookAndFeel()));
+    }
+
 }
