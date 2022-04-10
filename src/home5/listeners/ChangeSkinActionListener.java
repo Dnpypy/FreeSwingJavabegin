@@ -4,6 +4,7 @@ package home5.listeners;
 import home4.gui.TestCalculator;
 import home5.gui.MyFrame;
 
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,10 +12,11 @@ import java.awt.event.FocusListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 public class ChangeSkinActionListener implements ActionListener {
 
     private MyFrame frame;
-    private LookAndFeel laf;
+    private LookAndFeel laf; //объект отвечает за внешний вид
 
     public ChangeSkinActionListener(MyFrame frame, LookAndFeel laf) {
         this.frame = frame;

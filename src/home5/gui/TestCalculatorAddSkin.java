@@ -1,12 +1,12 @@
 package home5.gui;
 
-import com.jtattoo.plaf.aero.AeroLookAndFeel;
+import com.jtattoo.plaf.bernstein.BernsteinLookAndFeel;
 import home5.listeners.CalcButtonActionListener;
 import home5.listeners.CalcTextFieldFocusListener;
 import home5.listeners.ChangeSkinActionListener;
+import net.infonode.gui.laf.InfoNodeLookAndFeel;
 
 import javax.swing.*;
-import javax.swing.plaf.metal.MetalLookAndFeel;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -41,11 +41,10 @@ public class TestCalculatorAddSkin {
     public static void main(String[] args) {
 
         try {
-            UIManager.setLookAndFeel(new AeroLookAndFeel());
+           UIManager.setLookAndFeel(new BernsteinLookAndFeel());
         } catch (UnsupportedLookAndFeelException ex) {
             Logger.getLogger(TestCalculatorAddSkin.class.getName()).log(Level.SEVERE, null, ex);
         }
-
         JFrame.setDefaultLookAndFeelDecorated(true);
 
         TestCalculatorAddSkin calculator = new TestCalculatorAddSkin();
@@ -154,8 +153,10 @@ public class TestCalculatorAddSkin {
     }
 
     private void addChangeSkinListeners(){
-       btnChangeSkin.addActionListener(new ChangeSkinActionListener(frame, new MetalLookAndFeel()));
-       btnDefaultSkin.addActionListener(new ChangeSkinActionListener(frame, new AeroLookAndFeel()));
+        btnChangeSkin.addActionListener(new ChangeSkinActionListener(frame, new InfoNodeLookAndFeel()));
+        btnDefaultSkin.addActionListener(new ChangeSkinActionListener(frame, new BernsteinLookAndFeel()));
+
+
     }
 
 }
