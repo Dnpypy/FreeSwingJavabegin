@@ -1,7 +1,7 @@
 package home5.listeners;
 
 import home5.gui.MyTextField;
-import home5.gui.TestCalculatorAddSkin;
+import home5.gui.Calculator;
 
 import java.awt.*;
 import java.awt.event.FocusEvent;
@@ -17,7 +17,7 @@ public class CalcTextFieldFocusListener implements FocusListener {
 
     @Override
     public void focusGained(FocusEvent event) {
-        if (textField.getText().trim().equals(TestCalculatorAddSkin.INPUT_NUMBER)) {
+        if (textField.getText().trim().equals(Calculator.INPUT_NUMBER)) {
             textField.setText("");
             textField.setForeground(Color.BLACK);
         }
@@ -26,7 +26,7 @@ public class CalcTextFieldFocusListener implements FocusListener {
     @Override
     public void focusLost(FocusEvent event) {
         if (textField.getText().trim().equals("")) {
-            textField.setText(TestCalculatorAddSkin.INPUT_NUMBER);
+            textField.setText(Calculator.INPUT_NUMBER);
             textField.setForeground(Color.GRAY);
         }
     }
