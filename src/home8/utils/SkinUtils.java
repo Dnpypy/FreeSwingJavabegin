@@ -8,6 +8,12 @@ import javax.swing.*;
 
 public class SkinUtils {
 
+
+    /**
+     *
+     * @param comp компонент
+     * @param laf скин библиотеки
+     */
     public static void changeSkin(Component comp, LookAndFeel laf) {
         try {
             UIManager.setLookAndFeel(laf);
@@ -18,7 +24,12 @@ public class SkinUtils {
         SwingUtilities.updateComponentTreeUI(comp);
         
     }
-    
+
+    /**
+     *
+     * @param comp компонент
+     * @param laf скин в виде строки
+     */
     public static void changeSkin(Component comp, String laf) {
         try {
             try {
