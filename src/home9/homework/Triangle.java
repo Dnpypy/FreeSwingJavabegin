@@ -54,7 +54,7 @@ public class Triangle {
     public static void createPatternD() {
         // заполняем весь массив символами,
         fillTriangleBySymbol(symbol);
-        // потом заполняем необходимые ячейки пробелами, убирая символ с левого края пока j < i
+        // потом заполняем необходимые ячейки пробелами, убирая символ  с левого края пока j < i
         for (int i = 0; i < triangle.length; i++) {
             for (int j = 0; j < i; j++) {
                 triangle[i][j] = " "; //// как в паттерне А только i j поменялись местами
