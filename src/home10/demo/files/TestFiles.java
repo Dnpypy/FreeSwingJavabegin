@@ -1,6 +1,6 @@
 package home10.demo.files;
 
-import home10.demo.exceptions.TestExceptions;
+import home5.gui.Calculator;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -13,59 +13,80 @@ public class TestFiles {
         writeTextToFile();
         readTextFromFile();
         readBytesFromFile();
+        workWithFileSystem();
+    }
+
+    private static void workWithFileSystem() {
+        System.out.println("работа с файловой системой");
+        try {
+            File file = new File("D:\\test.txt");
+            file.createNewFile();
+            System.out.println("Создан файл + " + file.getName());
+            System.out.println("it's file = " + file.isFile());
+            System.out.println("it's dir = " + file.isDirectory());
+
+            File dirFile = new File("D:\\Idea");
+
+            for (String name : dirFile.list()) {
+                System.out.println("FileName is Dir: " + name);
+            }
+        } catch (IOException e) {
+            Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 
     private static void readBytesFromFile() {
+
         System.out.println("чтение данных из файла по байтам");
         BufferedInputStream bufferedInputStream = null;
         byte[] buffer = new byte[10];
         try {
-            bufferedInputStream = new BufferedInputStream(new FileInputStream("D:\\text.txt"));
+            bufferedInputStream = new BufferedInputStream(new FileInputStream("D:\\test.txt"));
             int readBytes;
             while ((readBytes = bufferedInputStream.read(buffer)) != -1) {
                 String str = new String(buffer);
+                System.out.println(str);
             }
-        } catch (FileNotFoundException fex) {
-            Logger.getLogger(TestExceptions.class.getName()).log(Level.SEVERE, null, fex);
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(TestExceptions.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             try {
                 if (bufferedInputStream != null) {
                     bufferedInputStream.close();
                 }
             } catch (IOException ex) {
-                Logger.getLogger(TestExceptions.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
     }
 
     private static void readTextFromFile() {
+
         System.out.println("Чтение текстовых данных из файла строки с помощью FileReader и BufferReader");
         try {
-            BufferedReader bufferReader = new BufferedReader(new FileReader("D:\\text.txt"));
+            BufferedReader bufferedReader = new BufferedReader(new FileReader("D:\\test.txt"));
             String str;
-            while ((str = bufferReader.readLine()) != null) {
+            while ((str = bufferedReader.readLine()) != null) {
                 System.out.println(str);
             }
-            bufferReader.close();
+            bufferedReader.close();
         } catch (IOException ex) {
-            Logger.getLogger(TestExceptions.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     private static void writeTextToFile() {
-
-        System.out.println("запись текста в файл");
+        System.out.println("Запись текста в файл");
         try {
-            Writer writer = new FileWriter("D:\\text.txt");
-            writer.write("test strings + \n");
-            writer.write("test strings");
-            writer.flush();
-            writer.close();
-        } catch (IOException ioException) {
-            Logger.getLogger(TestExceptions.class.getName()).log(Level.SEVERE, null, ioException);
+            Writer file = new FileWriter("D:\\sedddd.txt");
+            file.write("test strings1" + "\n");
+            file.write("test strings2");
+            file.flush();
+            file.close();
+        } catch (IOException ex) {
+            Logger.getLogger(Calculator.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
