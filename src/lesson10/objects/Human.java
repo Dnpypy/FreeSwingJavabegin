@@ -1,4 +1,4 @@
-package home10.objects;
+package lesson10.objects;
 
 public class Human {
 
