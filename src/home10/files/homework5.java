@@ -2,7 +2,6 @@ package home10.files;
 
 import java.io.File;
 import java.io.FilenameFilter;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Objects;
 
