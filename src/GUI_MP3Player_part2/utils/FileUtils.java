@@ -11,10 +11,10 @@ import javax.swing.filechooser.FileFilter;
 public class FileUtils {
 
     // получить имя файла без расширения
-    public static String getFileNameWithoutExtension(String fileName) {
+    public static String getFileNameWithoutExtension(String fileName){
         File file = new File(fileName);
         int index = file.getName().lastIndexOf('.');
-        if (index > 0 && index <= file.getName().length() - 2) {
+        if(index > 0 && index <= file.getName().length() - 2) {
             return file.getName().substring(0, index);
         }
         return "noname";
@@ -25,7 +25,6 @@ public class FileUtils {
         String ext = null;
         String s = f.getName();
         int i = s.lastIndexOf('.');
-
         if (i > 0 &&  i < s.length() - 1) {
             ext = s.substring(i+1).toLowerCase();
         }
@@ -33,10 +32,10 @@ public class FileUtils {
     }
 
     // удалить текущий файл-фильтр и установить новый переданный    
-    public static void addFileFilter(JFileChooser jfc, FileFilter ff) {
+    public static void addFileFilter(JFileChooser jfc, FileFilter filter){
         jfc.removeChoosableFileFilter(jfc.getFileFilter());
-        jfc.setFileFilter(ff);
-        jfc.setSelectedFile(new File(""));// удалить последнее имя открываемого/сохраняемого файла
+        jfc.setFileFilter(filter);
+        jfc.setSelectedFile(new File("")); // удалить последнее имя открыв./сохраняемого файла
     }
 
     // сохранить объект
