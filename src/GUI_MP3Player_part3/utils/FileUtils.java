@@ -1,7 +1,5 @@
-package GUI_MP3Player_part2.utils;
+package GUI_MP3Player_part3.utils;
 
-
-import GUI_MP3Player_part2.gui.MP3PlayerGui;
 
 import java.io.*;
 import java.util.logging.Level;
@@ -21,23 +19,24 @@ public class FileUtils {
         }
         return "noname";
     }
-
+    
     // получить расширение файла
     public static String getFileExtension(File f) {
         String ext = null;
         String s = f.getName();
         int i = s.lastIndexOf('.');
-        if (i > 0 && i < s.length() - 1) {
-            ext = s.substring(i + 1).toLowerCase();
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
         }
         return ext;
     }
 
     // удалить текущий файл-фильтр и установить новый переданный    
-    public static void addFileFilter(JFileChooser jfc, FileFilter filter) {
+    public static void addFileFilter(JFileChooser jfc, FileFilter ff) {
         jfc.removeChoosableFileFilter(jfc.getFileFilter());
-        jfc.setFileFilter(filter);
-        jfc.setSelectedFile(new File("")); // удалить последнее имя открыв./сохраняемого файла
+        jfc.setFileFilter(ff);
+        jfc.setSelectedFile(new File(""));// удалить последнее имя открываемого/сохраняемого файла
     }
 
     // сохранить объект
@@ -49,23 +48,24 @@ public class FileUtils {
             oos.flush();
             oos.close();
             fos.close();
-        } catch (IOException e) {
-            Logger.getLogger(FileUtils.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
-
+        } catch (IOException ex) {
+            Logger.getLogger(FileUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     // открыть объект
     public static Object deserialize(String fileName) {
-        try{
+        try {
             FileInputStream fis = new FileInputStream(fileName);
-            ObjectInputStream ois = new ObjectInputStream(fis);
-            Object ts = (Object) ois.readObject();
+            ObjectInputStream oin = new ObjectInputStream(fis);
+            Object ts = (Object) oin.readObject();
             fis.close();
             return ts;
-        } catch (ClassCastException | IOException | ClassNotFoundException e) {
-            Logger.getLogger(FileUtils.class.getName()).log(java.util.logging.Level.SEVERE, null, e);
+
+        } catch (ClassNotFoundException | IOException ex) {
+            Logger.getLogger(FileUtils.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return null;
     }
 }
